@@ -781,13 +781,26 @@
     height: 350px;
   }
 
+  /* Mobile Timeline - Vertical Layout */
+  .journey-section {
+    padding: 4rem 0;
+  }
+
+  .timeline {
+    max-width: 100%;
+    padding: 2rem 1rem;
+  }
+
   .timeline::before {
-    left: 30px;
+    left: 40px;
+    transform: translateX(0);
   }
 
   .timeline-item {
     flex-direction: row !important;
-    padding-left: 80px;
+    padding-left: 100px;
+    gap: 2rem;
+    margin-bottom: 4rem;
   }
 
   .timeline-item:nth-child(even) {
@@ -797,17 +810,76 @@
   .timeline-marker {
     position: absolute;
     left: 0;
+    width: 70px;
+    height: 70px;
+    font-size: 1.8rem;
+  }
+
+  .timeline-content {
+    max-width: 100%;
+    padding: 2rem 1.5rem;
+  }
+
+  .timeline-content::after {
+    left: -22px !important;
+    right: auto !important;
+    border-right: none !important;
+    border-top: none !important;
+    border-left: 2px solid var(--color-border) !important;
+    border-bottom: 2px solid var(--color-border) !important;
+  }
+
+  /* Simplified hover for mobile */
+  .timeline-item:hover .timeline-content {
+    transform: translateY(-10px) !important;
+    box-shadow: 0 20px 40px rgba(255, 51, 102, 0.3) !important;
+  }
+
+  .timeline-title {
+    font-size: 1.6rem;
+  }
+
+  .timeline-company {
+    font-size: 1.1rem;
+  }
+
+  .timeline-highlights li {
+    padding-left: 2rem;
+    font-size: 0.95rem;
   }
 }
 
 @media (max-width: 640px) {
+  .about-hero {
+    padding: 120px 0 60px;
+  }
+
   .photo-container {
-    flex: 0 0 300px;
+    flex: 0 0 280px;
   }
 
   .photo-frame {
-    width: 300px;
-    height: 300px;
+    width: 280px;
+    height: 280px;
+  }
+
+  .status-badge {
+    bottom: 20px;
+    right: 20px;
+    padding: 0.5rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .about-title {
+    font-size: 2.5rem;
+  }
+
+  .about-subtitle {
+    font-size: 1.3rem;
+  }
+
+  .about-description {
+    font-size: 1.05rem;
   }
 
   .contact-info {
@@ -818,17 +890,199 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
+    font-size: 1rem;
   }
 
   .stats-grid-about {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .stat-card-about {
+    padding: 2rem 1.5rem;
+  }
+
+  .stat-icon-about {
+    font-size: 2.5rem;
+  }
+
+  .stat-value-about {
+    font-size: 2.5rem;
+  }
+
+  .stat-label-about {
+    font-size: 1rem;
+  }
+
+  /* Extra small screens - Single column timeline */
+  .journey-section {
+    padding: 3rem 0;
+  }
+
+  .section-title-about {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .timeline {
+    padding: 1rem 0.5rem;
+  }
+
+  .timeline::before {
+    left: 35px;
+  }
+
+  .timeline-item {
+    padding-left: 90px;
+    margin-bottom: 3rem;
+  }
+
+  .timeline-marker {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+    border-width: 4px;
+  }
+
+  .timeline-content {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+
+  .timeline-year {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
+  .timeline-year::before {
+    font-size: 1rem;
+  }
+
+  .timeline-title {
+    font-size: 1.4rem;
+  }
+
+  .timeline-company {
+    font-size: 1rem;
+  }
+
+  .timeline-company::before {
+    font-size: 1rem;
+  }
+
+  .timeline-location {
+    font-size: 0.9rem;
+  }
+
+  .timeline-description {
+    font-size: 1rem;
+    padding-left: 0.8rem;
+    border-left-width: 2px;
+  }
+
+  .timeline-highlights {
+    padding: 1.2rem;
+  }
+
+  .timeline-highlights li {
+    padding-left: 2rem;
+    margin-bottom: 0.8rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .timeline-highlights li::before {
+    font-size: 1rem;
+  }
+
+  .timeline-skills {
+    gap: 0.6rem;
+  }
+
+  .skill-tag-timeline {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    border-radius: 20px;
   }
 
   .achievements-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .achievement-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .achievement-icon {
+    font-size: 3rem;
+  }
+
+  .achievement-title {
+    font-size: 1.3rem;
+  }
+
+  .achievement-description {
+    font-size: 1rem;
   }
 
   .values-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .value-card {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .value-icon {
+    font-size: 3rem;
+  }
+
+  .value-card h3 {
+    font-size: 1.4rem;
+  }
+
+  .value-card p {
+    font-size: 1rem;
+  }
+}
+
+/* Extra small devices (< 375px) */
+@media (max-width: 374px) {
+  .photo-frame {
+    width: 250px;
+    height: 250px;
+  }
+
+  .about-title {
+    font-size: 2rem;
+  }
+
+  .timeline::before {
+    left: 30px;
+  }
+
+  .timeline-item {
+    padding-left: 75px;
+  }
+
+  .timeline-marker {
+    width: 50px;
+    height: 50px;
+    font-size: 1.3rem;
+  }
+
+  .timeline-content {
+    padding: 1.2rem;
+  }
+
+  .timeline-title {
+    font-size: 1.2rem;
+  }
+
+  .stats-grid-about {
     grid-template-columns: 1fr;
   }
 }

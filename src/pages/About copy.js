@@ -1,22 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { FaGraduationCap, FaBriefcase, FaCode, FaAward, FaRocket, FaHeart, FaLaptopCode, FaUsers, FaChartLine } from 'react-icons/fa';
 import './About.css';
 
 const About = () => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 968);
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
   const stats = [
     { icon: FaRocket, value: '30%', label: 'Faster Load Times' },
     { icon: FaChartLine, value: '35%', label: 'Less Downtime' },
@@ -328,23 +315,10 @@ const About = () => {
               <motion.div
                 key={i}
                 className={`timeline-item ${item.type}`}
-                initial={{ 
-                  opacity: 0, 
-                  x: isMobile ? -50 : (i % 2 === 0 ? -100 : 100),
-                  scale: 0.8
-                }}
-                whileInView={{ 
-                  opacity: 1, 
-                  x: 0,
-                  scale: 1
-                }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ 
-                  delay: i * 0.15,
-                  duration: 0.8,
-                  type: "spring",
-                  stiffness: 100
-                }}
+                initial={{ opacity: 0, x: i % 2 === 0 ? -50 : 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
               >
                 <div className="timeline-marker">
                   <item.icon />
@@ -352,27 +326,7 @@ const About = () => {
 
                 <motion.div 
                   className="timeline-content"
-                  initial={{ 
-                    opacity: 0,
-                    rotateY: isMobile ? 0 : (i % 2 === 0 ? -15 : 15)
-                  }}
-                  whileInView={{ 
-                    opacity: 1,
-                    rotateY: 0
-                  }}
-                  viewport={{ once: true }}
-                  transition={{
-                    delay: i * 0.15 + 0.3,
-                    duration: 0.8
-                  }}
-                  whileHover={{ 
-                    scale: isMobile ? 1.02 : 1.03,
-                    boxShadow: isMobile 
-                      ? '0 20px 40px rgba(255, 51, 102, 0.3)'
-                      : (i % 2 === 0 
-                        ? '-20px 30px 60px rgba(255, 51, 102, 0.3)' 
-                        : '20px 30px 60px rgba(0, 212, 255, 0.3)')
-                  }}
+                  whileHover={{ scale: 1.02, boxShadow: '0 20px 40px rgba(255, 51, 102, 0.2)' }}
                 >
                   <div className="timeline-year">{item.year}</div>
                   <h3 className="timeline-title">{item.title}</h3>
