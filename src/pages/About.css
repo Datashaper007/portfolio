@@ -269,9 +269,23 @@
   font-weight: 600;
 }
 
-/* Journey Timeline */
+/* Journey Timeline - Enhanced Design */
 .journey-section {
   padding: 6rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.journey-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255, 51, 102, 0.05), transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
 }
 
 .section-title-about {
@@ -282,31 +296,57 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  position: relative;
+}
+
+.section-title-about::after {
+  content: '';
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  border-radius: 2px;
 }
 
 .timeline {
   position: relative;
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto;
+  padding: 2rem 0;
 }
 
+/* Glowing animated line */
 .timeline::before {
   content: '';
   position: absolute;
   left: 50%;
   top: 0;
   bottom: 0;
-  width: 3px;
-  background: linear-gradient(180deg, var(--color-primary), var(--color-secondary), var(--color-accent));
+  width: 4px;
+  background: linear-gradient(180deg, 
+    var(--color-primary) 0%, 
+    var(--color-secondary) 50%, 
+    var(--color-accent) 100%
+  );
   transform: translateX(-50%);
+  box-shadow: 0 0 20px rgba(255, 51, 102, 0.5);
+  animation: lineGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes lineGlow {
+  0% { box-shadow: 0 0 20px rgba(255, 51, 102, 0.3); }
+  100% { box-shadow: 0 0 40px rgba(255, 51, 102, 0.8); }
 }
 
 .timeline-item {
   position: relative;
-  margin-bottom: 4rem;
+  margin-bottom: 5rem;
   display: flex;
   align-items: flex-start;
-  gap: 2rem;
+  gap: 3rem;
 }
 
 .timeline-item:nth-child(odd) {
@@ -317,127 +357,290 @@
   flex-direction: row-reverse;
 }
 
+/* Enhanced Marker with Glow */
 .timeline-marker {
-  flex: 0 0 60px;
-  width: 60px;
-  height: 60px;
-  background: var(--color-surface);
-  border: 4px solid var(--color-primary);
+  flex: 0 0 80px;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--color-surface), var(--color-bg));
+  border: 5px solid var(--color-primary);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: var(--color-primary);
   position: relative;
   z-index: 2;
-  box-shadow: 0 0 0 8px var(--color-bg);
+  box-shadow: 
+    0 0 0 12px var(--color-bg),
+    0 0 30px rgba(255, 51, 102, 0.4);
+  transition: all 0.4s ease;
+}
+
+.timeline-item:hover .timeline-marker {
+  transform: scale(1.1) rotate(360deg);
+  box-shadow: 
+    0 0 0 12px var(--color-bg),
+    0 0 50px rgba(255, 51, 102, 0.8);
 }
 
 .timeline-item.work .timeline-marker {
   border-color: var(--color-primary);
   color: var(--color-primary);
+  background: linear-gradient(135deg, rgba(255, 51, 102, 0.2), var(--color-surface));
 }
 
 .timeline-item.freelance .timeline-marker {
   border-color: var(--color-secondary);
   color: var(--color-secondary);
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), var(--color-surface));
+  box-shadow: 
+    0 0 0 12px var(--color-bg),
+    0 0 30px rgba(0, 212, 255, 0.4);
 }
 
 .timeline-item.education .timeline-marker {
   border-color: var(--color-accent);
   color: var(--color-accent);
+  background: linear-gradient(135deg, rgba(255, 204, 0, 0.2), var(--color-surface));
+  box-shadow: 
+    0 0 0 12px var(--color-bg),
+    0 0 30px rgba(255, 204, 0, 0.4);
 }
 
+/* Enhanced Content Card */
 .timeline-content {
   flex: 1;
+  background: linear-gradient(135deg, var(--color-surface) 0%, rgba(255, 51, 102, 0.02) 100%);
+  border: 2px solid var(--color-border);
+  border-radius: 20px;
+  padding: 2.5rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.timeline-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-accent));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease;
+}
+
+.timeline-item:hover .timeline-content::before {
+  transform: scaleX(1);
+}
+
+.timeline-content::after {
+  content: '';
+  position: absolute;
+  top: 40px;
+  width: 30px;
+  height: 30px;
   background: var(--color-surface);
   border: 2px solid var(--color-border);
-  border-radius: 12px;
-  padding: 2rem;
-  transition: all 0.3s ease;
+  transform: rotate(45deg);
+  z-index: -1;
 }
 
+.timeline-item:nth-child(odd) .timeline-content::after {
+  left: -17px;
+  border-right: none;
+  border-top: none;
+}
+
+.timeline-item:nth-child(even) .timeline-content::after {
+  right: -17px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.timeline-item:hover .timeline-content {
+  transform: translateY(-10px);
+  border-color: var(--color-primary);
+  box-shadow: 
+    0 20px 60px rgba(255, 51, 102, 0.2),
+    0 0 0 1px rgba(255, 51, 102, 0.1);
+}
+
+/* Year Badge with Gradient */
 .timeline-year {
-  display: inline-block;
-  background: var(--color-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, var(--color-primary), #ff1744);
   color: white;
-  padding: 0.4rem 1rem;
-  border-radius: 20px;
-  font-size: 0.9rem;
+  padding: 0.6rem 1.5rem;
+  border-radius: 25px;
+  font-size: 0.95rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 15px rgba(255, 51, 102, 0.3);
+  letter-spacing: 0.5px;
 }
 
+.timeline-year::before {
+  content: '📅';
+  font-size: 1.1rem;
+}
+
+/* Title with Underline Animation */
 .timeline-title {
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: var(--color-text);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.8rem;
+  font-weight: 800;
+  position: relative;
+  display: inline-block;
 }
 
+.timeline-title::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  transition: width 0.5s ease;
+}
+
+.timeline-item:hover .timeline-title::after {
+  width: 100%;
+}
+
+/* Company Name with Icon */
 .timeline-company {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: var(--color-primary);
   font-weight: 700;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
 }
 
+.timeline-company::before {
+  content: '🏢';
+  font-size: 1.2rem;
+}
+
+/* Location with Icon */
 .timeline-location {
   font-size: 1rem;
   color: var(--color-text-dim);
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.timeline-location::before {
+  content: '📍';
+  font-size: 1rem;
 }
 
 .timeline-description {
   font-size: 1.1rem;
-  line-height: 1.7;
+  line-height: 1.8;
   color: var(--color-text-dim);
   margin-bottom: 1.5rem;
+  padding-left: 1rem;
+  border-left: 3px solid rgba(255, 51, 102, 0.3);
 }
 
+/* Enhanced Highlights with Custom Bullets */
 .timeline-highlights {
   list-style: none;
   padding: 0;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  background: rgba(255, 51, 102, 0.03);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 51, 102, 0.1);
 }
 
 .timeline-highlights li {
   position: relative;
-  padding-left: 2rem;
-  margin-bottom: 0.8rem;
+  padding-left: 2.5rem;
+  margin-bottom: 1rem;
   color: var(--color-text-dim);
-  line-height: 1.6;
+  line-height: 1.7;
+  transition: all 0.3s ease;
+}
+
+.timeline-highlights li:last-child {
+  margin-bottom: 0;
 }
 
 .timeline-highlights li::before {
-  content: '▸';
+  content: '✦';
   position: absolute;
   left: 0;
   color: var(--color-primary);
   font-weight: bold;
-}
-
-.timeline-skills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.skill-tag-timeline {
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  padding: 0.4rem 1rem;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  color: var(--color-text);
-  font-weight: 600;
+  font-size: 1.2rem;
   transition: all 0.3s ease;
 }
 
+.timeline-highlights li:hover {
+  color: var(--color-text);
+  transform: translateX(5px);
+}
+
+.timeline-highlights li:hover::before {
+  color: var(--color-secondary);
+  transform: rotate(180deg);
+}
+
+/* Enhanced Skill Tags */
+.timeline-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.skill-tag-timeline {
+  background: linear-gradient(135deg, var(--color-bg), rgba(255, 51, 102, 0.05));
+  border: 2px solid var(--color-border);
+  padding: 0.6rem 1.3rem;
+  border-radius: 25px;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-tag-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
 .skill-tag-timeline:hover {
-  background: var(--color-primary);
+  background: linear-gradient(135deg, var(--color-primary), #ff1744);
   color: white;
   border-color: var(--color-primary);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(255, 51, 102, 0.4);
+}
+
+.skill-tag-timeline:hover::before {
+  left: 100%;
 }
 
 /* Achievements Section */
