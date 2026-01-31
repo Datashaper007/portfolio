@@ -327,7 +327,8 @@ const About = () => {
             {journey.map((item, i) => (
               <motion.div
                 key={i}
-                className={`timeline-item ${item.type}`}
+                className={`timeline-item ${item.type} ${isMobile ? 'left' : (i % 2 === 0 ? 'left' : 'right')}`}
+
                 initial={{ 
                   opacity: 0, 
                   x: isMobile ? -50 : (i % 2 === 0 ? -100 : 100),
