@@ -10,7 +10,7 @@ const app = express();
 // Middleware
 app.use(helmet());
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'https://amityadav.netlify.app',
+  origin: process.env.CLIENT_URL || 'https://portfolio-five-rho-82.vercel.app',
   credentials: true
 }));
 app.use(express.json());
