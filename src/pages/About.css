@@ -313,7 +313,7 @@
 
 .timeline {
   position: relative;
-  max-width: 1100px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 2rem 0;
 }
@@ -346,15 +346,25 @@
   margin-bottom: 5rem;
   display: flex;
   align-items: flex-start;
-  gap: 3rem;
+  gap: 4rem;
 }
 
+/* Left side items (odd) */
 .timeline-item:nth-child(odd) {
   flex-direction: row;
 }
 
+.timeline-item:nth-child(odd) .timeline-content {
+  transform-origin: left;
+}
+
+/* Right side items (even) */
 .timeline-item:nth-child(even) {
   flex-direction: row-reverse;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+  transform-origin: right;
 }
 
 /* Enhanced Marker with Glow */
@@ -409,65 +419,86 @@
     0 0 30px rgba(255, 204, 0, 0.4);
 }
 
-/* Enhanced Content Card */
+/* Enhanced Content Card - Wider with Better Animations */
 .timeline-content {
   flex: 1;
+  max-width: 600px;
   background: linear-gradient(135deg, var(--color-surface) 0%, rgba(255, 51, 102, 0.02) 100%);
   border: 2px solid var(--color-border);
   border-radius: 20px;
-  padding: 2.5rem;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 3rem;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
+/* Animated top border */
 .timeline-content::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;
+  height: 5px;
   background: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-accent));
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s ease;
 }
 
 .timeline-item:hover .timeline-content::before {
   transform: scaleX(1);
 }
 
+/* Glowing corner accent */
 .timeline-content::after {
   content: '';
   position: absolute;
   top: 40px;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   background: var(--color-surface);
   border: 2px solid var(--color-border);
   transform: rotate(45deg);
   z-index: -1;
+  transition: all 0.3s ease;
 }
 
 .timeline-item:nth-child(odd) .timeline-content::after {
-  left: -17px;
+  left: -22px;
   border-right: none;
   border-top: none;
 }
 
 .timeline-item:nth-child(even) .timeline-content::after {
-  right: -17px;
+  right: -22px;
   border-left: none;
   border-bottom: none;
 }
 
-.timeline-item:hover .timeline-content {
-  transform: translateY(-10px);
+/* Hover effects with different animations for each side */
+.timeline-item:nth-child(odd):hover .timeline-content {
+  transform: translateX(15px) translateY(-15px) rotate(1deg);
   border-color: var(--color-primary);
   box-shadow: 
-    0 20px 60px rgba(255, 51, 102, 0.2),
-    0 0 0 1px rgba(255, 51, 102, 0.1);
+    -20px 30px 60px rgba(255, 51, 102, 0.3),
+    0 0 0 1px rgba(255, 51, 102, 0.2),
+    inset 0 0 100px rgba(255, 51, 102, 0.05);
+}
+
+.timeline-item:nth-child(even):hover .timeline-content {
+  transform: translateX(-15px) translateY(-15px) rotate(-1deg);
+  border-color: var(--color-secondary);
+  box-shadow: 
+    20px 30px 60px rgba(0, 212, 255, 0.3),
+    0 0 0 1px rgba(0, 212, 255, 0.2),
+    inset 0 0 100px rgba(0, 212, 255, 0.05);
+}
+
+.timeline-item:hover .timeline-content::after {
+  transform: rotate(45deg) scale(1.2);
+  border-color: var(--color-primary);
 }
 
 /* Year Badge with Gradient */
