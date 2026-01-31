@@ -77,7 +77,7 @@ const Contact = () => {
                   <FaEnvelope className="info-icon" />
                   <div>
                     <div className="info-label">Email</div>
-                    <a href="mailto:amit@example.com">amit@example.com</a>
+                    <a href="mailto:data.shaper.007@gmail.com">data.shaper.007@gmail.com</a>
                   </div>
                 </div>
 
@@ -85,7 +85,7 @@ const Contact = () => {
                   <FaPhone className="info-icon" />
                   <div>
                     <div className="info-label">Phone</div>
-                    <a href="tel:+919999999999">+91 99999 99999</a>
+                    <a href="tel:+919616260449">+91 96162 60449</a>
                   </div>
                 </div>
 
@@ -105,7 +105,7 @@ const Contact = () => {
                 <a href="https://linkedin.com/in/amityadav" target="_blank" rel="noopener noreferrer">
                   <FaLinkedin />
                 </a>
-                <a href="mailto:amit@example.com">
+                <a href="mailto:data.shaper.007@gmail.com">
                   <FaEnvelope />
                 </a>
               </div>
@@ -127,7 +127,7 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  placeholder="John Doe"
+                  placeholder="Amit Yadav"
                 />
               </div>
 
@@ -140,7 +140,7 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  placeholder="john@example.com"
+                  placeholder="Enter your email address"
                 />
               </div>
 
