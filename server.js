@@ -10,7 +10,7 @@ const app = express();
 // Middleware
 app.use(helmet());
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'https://amit-yadav-nk1z.onrender.com',
+  origin: process.env.CLIENT_URL || 'https://harmonious-praline-c7db97.netlify.app',
   credentials: true
 }));
 app.use(express.json());
