@@ -156,8 +156,8 @@ const HomeFinal = () => {
               transition={{ delay: 1.4 }}
             >
               {[
-                { icon: FaGithub, link: 'https://github.com/amityadav' },
-                { icon: FaLinkedin, link: 'https://linkedin.com/in/amityadav' },
+                { icon: FaGithub, link: 'https://github.com/Datashaper007' },
+                { icon: FaLinkedin, link: 'https://www.linkedin.com/in/amit-yadav-a63b6b32a' },
                 { icon: FaEnvelope, link: 'mailto:data.shaper.007@gmail.com' }
               ].map((social, i) => (
                 <motion.a
