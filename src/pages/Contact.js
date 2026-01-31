@@ -99,10 +99,10 @@ const Contact = () => {
               </div>
 
               <div className="social-links">
-                <a href="https://github.com/amityadav" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/Datashaper007" target="_blank" rel="noopener noreferrer">
                   <FaGithub />
                 </a>
-                <a href="https://linkedin.com/in/amityadav" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.linkedin.com/in/amit-yadav-a63b6b32a" target="_blank" rel="noopener noreferrer">
                   <FaLinkedin />
                 </a>
                 <a href="mailto:data.shaper.007@gmail.com">
