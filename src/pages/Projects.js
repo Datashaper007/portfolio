@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt, FaCode } from "react-icons/fa";
-import axios from "axios";
+import { getProjects } from '../services/api';
 import "./Projects.css";
 
 const Projects = () => {
@@ -11,27 +11,26 @@ const Projects = () => {
   const [filter, setFilter] = useState("all");
 
   useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        
-        // Fetch from your API
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/projects`);
-        
-        console.log('Projects loaded:', response.data);
-        setProjects(response.data);
-      } catch (err) {
-        console.error('Error fetching projects:', err);
-        setError('Failed to load projects. Please try again later.');
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchProjects();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const fetchProjects = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      
+      // Fetch from API using service
+      const data = await getProjects();
+      
+      console.log('Projects loaded:', data);
+      setProjects(data);
+    } catch (err) {
+      console.error('Error fetching projects:', err);
+      setError('Failed to load projects. Please try again later.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // Filter projects by category
   const filteredProjects = filter === "all" 
