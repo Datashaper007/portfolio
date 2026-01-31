@@ -1,116 +1,115 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import "./Projects.css";
-
-const LOCAL_PROJECTS = [
-  {
-    id: 1,
-    title: "Portfolio Website",
-    description: "Personal portfolio built with React and animations.",
-    tech: ["React", "Framer Motion"],
-    liveUrl: "",
-    repoUrl: "",
-  },
-  {
-    id: 2,
-    title: "E-commerce UI",
-    description: "Modern responsive e-commerce frontend UI.",
-    tech: ["React", "CSS"],
-    liveUrl: "",
-    repoUrl: "",
-  },
-];
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { getProjects } from '../services/api';
+import './Projects.css';
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
+  const [filter, setFilter] = useState('all');
   const [loading, setLoading] = useState(true);
 
-  // ✅ No fetchProjects dependency warning because function is inside useEffect
   useEffect(() => {
-    const load = async () => {
+    fetchProjects();
+  }, [filter]);
+
+  const fetchProjects = async () => {
+    try {
       setLoading(true);
-
-      // If you later want API, replace this line with fetch logic.
-      setProjects(LOCAL_PROJECTS);
-
+      const filters = filter !== 'all' ? { category: filter } : {};
+      const data = await getProjects(filters);
+      setProjects(data);
+    } catch (error) {
+      console.error('Error fetching projects:', error);
+    } finally {
       setLoading(false);
-    };
+    }
+  };
 
-    load();
-  }, []);
+  const filters = ['all', 'fullstack', 'frontend', 'backend'];
 
   return (
     <div className="projects-page">
-      <div className="container">
-        <motion.div
-          className="projects-header"
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-        >
-          <h1>Projects</h1>
-          <p>Some things I’ve built recently.</p>
+      <section className="projects-hero">
+        <div className="container">
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            MY PROJECTS
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="projects-subtitle"
+          >
+            Showcasing my journey through code, creativity, and problem-solving
+          </motion.p>
+        </div>
+      </section>
 
-          <Link to="/" className="btn-back">
-            ← Back Home
-          </Link>
-        </motion.div>
-
-        {loading ? (
-          <div className="projects-state">Loading...</div>
-        ) : (
-          <div className="projects-grid">
-            {projects.map((p, idx) => (
-              <motion.div
-                key={p.id ?? idx}
-                className="project-card"
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.35, delay: idx * 0.05 }}
-                whileHover={{ scale: 1.02 }}
+      <section className="projects-content">
+        <div className="container">
+          <div className="filter-bar">
+            {filters.map((f) => (
+              <button
+                key={f}
+                className={`filter-btn ${filter === f ? 'active' : ''}`}
+                onClick={() => setFilter(f)}
               >
-                <h3 className="project-title">{p.title}</h3>
-                <p className="project-desc">{p.description}</p>
-
-                {Array.isArray(p.tech) && p.tech.length > 0 && (
-                  <div className="project-tags">
-                    {p.tech.map((t, i) => (
-                      <span key={i} className="tag">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                )}
-
-                <div className="project-links">
-                  {p.liveUrl && (
-                    <a
-                      className="btn-link"
-                      href={p.liveUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Live
-                    </a>
-                  )}
-                  {p.repoUrl && (
-                    <a
-                      className="btn-link"
-                      href={p.repoUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Code
-                    </a>
-                  )}
-                </div>
-              </motion.div>
+                {f}
+              </button>
             ))}
           </div>
-        )}
-      </div>
+
+          {loading ? (
+            <div className="loading">Loading projects...</div>
+          ) : (
+            <div className="projects-grid">
+              {projects.map((project, index) => (
+                <motion.div
+                  key={project._id}
+                  className="project-card"
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <div className="project-image">
+                    <img src={project.image} alt={project.title} />
+                    <div className="project-overlay">
+                      <div className="project-links">
+                        {project.githubUrl && (
+                          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                            <FaGithub />
+                          </a>
+                        )}
+                        {project.liveUrl && (
+                          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                            <FaExternalLinkAlt />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="project-info">
+                    <div className="project-category">{project.category}</div>
+                    <h3 className="project-title">{project.title}</h3>
+                    <p className="project-description">{project.shortDescription}</p>
+                    
+                    <div className="project-tech">
+                      {project.technologies.map((tech, i) => (
+                        <span key={i} className="tech-tag">{tech}</span>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
     </div>
   );
 };
