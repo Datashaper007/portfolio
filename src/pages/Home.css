@@ -76,6 +76,11 @@
 
 .hero-title-final span {
   display: inline-block;
+  margin-right: 0.3em; /* Add space between words */
+}
+
+.hero-title-final span:last-child {
+  margin-right: 0; /* Remove margin from last word */
 }
 
 .highlight-name {
