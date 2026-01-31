@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { FaGraduationCap, FaBriefcase, FaCode, FaAward, FaRocket, FaHeart, FaLaptopCode, FaUsers, FaChartLine } from 'react-icons/fa';
 import './About.css';
 
 const About = () => {
-  const [imageLoaded, setImageLoaded] = useState(false);
-
   const stats = [
     { icon: FaRocket, value: '30%', label: 'Faster Load Times' },
     { icon: FaChartLine, value: '35%', label: 'Less Downtime' },
@@ -172,7 +170,6 @@ const About = () => {
                     src="https://via.placeholder.com/400x400/1a1a1a/ff3366?text=YOUR+PHOTO" 
                     alt="Amit Yadav"
                     className="profile-photo"
-                    onLoad={() => setImageLoaded(true)}
                   />
                   
                   {/* Hover Overlay */}
