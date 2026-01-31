@@ -167,7 +167,7 @@ const About = () => {
                 {/* Profile Photo - Replace with your actual photo */}
                 <div className="photo-wrapper">
                   <img 
-                    src="https://via.placeholder.com/400x400/1a1a1a/ff3366?text=YOUR+PHOTO" 
+                    src="./amit-photo.jpg" 
                     alt="Amit Yadav"
                     className="profile-photo"
                   />
