@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaEnvelope, FaArrowRight, FaCode, FaLaptopCode, FaRocket, FaStar, FaBolt } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaArrowRight, FaCode, FaLaptopCode, FaRocket, FaStar } from 'react-icons/fa';
 import './Home.css';
 
 const HomeFinal = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isDesignerMode, setIsDesignerMode] = useState(true);
   const { scrollYProgress } = useScroll();
-  
+
   // Smooth scroll progress
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -57,7 +57,7 @@ const HomeFinal = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
             >
-              <motion.span 
+              <motion.span
                 className="badge-dot"
                 animate={{ scale: [1, 1.3, 1], opacity: [1, 0.5, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
@@ -67,12 +67,12 @@ const HomeFinal = () => {
 
             {/* Title with staggered animation */}
             <div className="title-wrapper">
-              <motion.h1 
+              <motion.h1
                 className="hero-title-final"
                 initial="hidden"
                 animate="visible"
               >
-                {['Hi,', "I'm", 'Amit','Yadav'].map((word, i) => (
+                {['Hi,', "I'm", 'Amit', 'Yadav'].map((word, i) => (
                   <motion.span
                     key={i}
                     initial={{ opacity: 0, y: 50 }}
@@ -87,21 +87,21 @@ const HomeFinal = () => {
             </div>
 
             {/* Animated Role */}
-            <motion.div 
+            <motion.div
               className="role-container-final"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
             >
-              <motion.h2 
+              <motion.h2
                 className="role-text-final"
-                animate={{ 
+                animate={{
                   color: isDesignerMode ? '#ff3366' : '#00d4ff'
                 }}
                 transition={{ duration: 1 }}
               >
                 Software Engineer
-                <motion.span 
+                <motion.span
                   className="role-line"
                   initial={{ width: 0 }}
                   animate={{ width: "100%" }}
@@ -117,7 +117,7 @@ const HomeFinal = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1, duration: 0.8 }}
             >
-              I craft responsive, user-focused applications with expertise in debugging and optimization. 
+              I craft responsive, user-focused applications with expertise in debugging and optimization.
               Currently building amazing things at <span className="company-highlight">Accuster Technologies</span>.
             </motion.p>
 
@@ -174,7 +174,7 @@ const HomeFinal = () => {
             </motion.div>
           </div>
 
-          {/* Animated SVG Illustration - Similar to Adham's */}
+          {/* Animated SVG Illustration */}
           <motion.div
             className="hero-illustration"
             initial={{ opacity: 0, x: 100 }}
@@ -185,8 +185,8 @@ const HomeFinal = () => {
               y: mousePosition.y
             }}
           >
-            <svg 
-              viewBox="0 0 500 500" 
+            <svg
+              viewBox="0 0 500 500"
               className="developer-illustration"
               onClick={() => setIsDesignerMode(!isDesignerMode)}
             >
@@ -203,9 +203,9 @@ const HomeFinal = () => {
                 transition={{ duration: 2, delay: 0.5 }}
               />
 
-              {/* Rotating Gears (for Developer) */}
+              {/* Rotating Gears (Developer) */}
               <motion.g
-                animate={{ 
+                animate={{
                   rotate: isDesignerMode ? 0 : 360,
                   opacity: isDesignerMode ? 0 : 1
                 }}
@@ -216,9 +216,9 @@ const HomeFinal = () => {
                 <circle cx="320" cy="320" r="25" fill="#00d4ff" opacity="0.3" />
               </motion.g>
 
-              {/* Design Brush (for Designer) */}
+              {/* Design Brush (Designer) */}
               <motion.g
-                animate={{ 
+                animate={{
                   rotate: isDesignerMode ? 0 : -45,
                   x: isDesignerMode ? 0 : -50,
                   y: isDesignerMode ? 0 : 50,
@@ -237,7 +237,7 @@ const HomeFinal = () => {
                 rx="70"
                 ry="90"
                 fill="url(#gradient2)"
-                animate={{ 
+                animate={{
                   ry: isDesignerMode ? 90 : 95
                 }}
                 transition={{ duration: 1 }}
@@ -260,7 +260,7 @@ const HomeFinal = () => {
                 d="M 190 200 Q 200 150, 250 140 Q 300 150, 310 200"
                 fill="#1a1a1a"
                 animate={{
-                  d: isDesignerMode 
+                  d: isDesignerMode
                     ? "M 190 200 Q 200 150, 250 140 Q 300 150, 310 200"
                     : "M 190 195 Q 200 145, 250 135 Q 300 145, 310 195"
                 }}
@@ -304,7 +304,6 @@ const HomeFinal = () => {
                 <rect x="190" y="320" width="120" height="80" rx="5" fill="#2a2a2a" />
                 <rect x="200" y="330" width="100" height="60" fill="#00d4ff" opacity="0.3" />
                 <rect x="180" y="400" width="140" height="5" rx="2" fill="#2a2a2a" />
-                {/* Code lines on laptop */}
                 <line x1="210" y1="345" x2="260" y2="345" stroke="#00d4ff" strokeWidth="2" />
                 <line x1="210" y1="355" x2="280" y2="355" stroke="#00d4ff" strokeWidth="2" />
                 <line x1="210" y1="365" x2="240" y2="365" stroke="#00d4ff" strokeWidth="2" />
@@ -318,23 +317,21 @@ const HomeFinal = () => {
                 }}
                 transition={{ duration: 1 }}
               >
-                {/* Pen tool */}
                 <path d="M 160 340 L 170 380 L 175 378 L 165 338 Z" fill="#ff3366" />
-                {/* Color palette */}
                 <circle cx="340" cy="360" r="8" fill="#ff3366" />
                 <circle cx="360" cy="360" r="8" fill="#00d4ff" />
                 <circle cx="350" cy="380" r="8" fill="#ffcc00" />
               </motion.g>
 
-              {/* Floating Code Brackets (Developer) */}
+              {/* Floating Code Brackets */}
               <motion.g
                 animate={{
                   opacity: isDesignerMode ? 0 : [0, 1, 1, 0],
                   y: isDesignerMode ? 0 : [0, -30, -30, 0],
                   x: [0, 5, -5, 0]
                 }}
-                transition={{ 
-                  duration: 3, 
+                transition={{
+                  duration: 3,
                   repeat: Infinity,
                   repeatDelay: 1
                 }}
@@ -343,15 +340,15 @@ const HomeFinal = () => {
                 <text x="340" y="150" fontSize="40" fill="#00d4ff" opacity="0.6">{'>'}</text>
               </motion.g>
 
-              {/* Floating Design Elements (Designer) */}
+              {/* Floating Design Elements */}
               <motion.g
                 animate={{
                   opacity: isDesignerMode ? [0, 1, 1, 0] : 0,
                   y: isDesignerMode ? [0, -30, -30, 0] : 0,
                   rotate: [0, 360]
                 }}
-                transition={{ 
-                  duration: 4, 
+                transition={{
+                  duration: 4,
                   repeat: Infinity,
                   repeatDelay: 1
                 }}
@@ -399,7 +396,7 @@ const HomeFinal = () => {
             </svg>
 
             {/* Toggle Label */}
-            <motion.div 
+            <motion.div
               className="toggle-label"
               animate={{
                 opacity: [0, 1, 1, 0]
@@ -414,7 +411,7 @@ const HomeFinal = () => {
             </motion.div>
 
             {/* Mode Indicator */}
-            <motion.div 
+            <motion.div
               className="mode-indicator"
               animate={{
                 backgroundColor: isDesignerMode ? '#ff3366' : '#00d4ff'
@@ -426,7 +423,7 @@ const HomeFinal = () => {
         </div>
 
         {/* Scroll Indicator */}
-        <motion.div 
+        <motion.div
           className="scroll-indicator-final"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -444,7 +441,7 @@ const HomeFinal = () => {
       {/* Stats Section */}
       <section className="stats-section-final">
         <div className="container">
-          <motion.div 
+          <motion.div
             className="stats-grid-final"
             initial="hidden"
             whileInView="visible"
@@ -465,7 +462,7 @@ const HomeFinal = () => {
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ scale: 1.05, y: -10 }}
               >
-                <motion.div 
+                <motion.div
                   className="stat-icon-final"
                   style={{ color: stat.color }}
                   whileHover={{ rotate: 360, scale: 1.2 }}
@@ -502,7 +499,7 @@ const HomeFinal = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05, type: "spring", stiffness: 200 }}
-                whileHover={{ 
+                whileHover={{
                   scale: 1.15,
                   boxShadow: "0 10px 30px rgba(255, 51, 102, 0.3)"
                 }}
